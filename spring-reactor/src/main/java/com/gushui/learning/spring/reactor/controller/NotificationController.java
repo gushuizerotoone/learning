@@ -27,7 +27,7 @@ public class NotificationController {
       eventBus.notify("notificationConsumer", Event.wrap(notification));
       System.out.println("Notification " + i + ": notification task submitted successfully");
     }
-    return "hello response";
+    return "notification complete";
   }
 
 }
