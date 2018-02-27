@@ -1,0 +1,13 @@
+rootProject.name = 'learning'
+
+include 'app'
+project(':app').name = 'learning-app'
+
+include 'common'
+project(':common').name = 'learning-common'
+
+//include 'backend'
+//project(':backend').name = 'learning-backend'
+
+include 'spring-drools'
+

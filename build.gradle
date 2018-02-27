@@ -1,0 +1,138 @@
+group 'com.gushui.learning'
+version '0.0.1'
+
+buildscript {
+    ext.useExternalMaven = new File(project.rootDir, ".USE_EXTERNAL_MAVEN").exists()
+    if (useExternalMaven) {
+        repositories {
+            mavenCentral()
+            jcenter()
+        }
+    } else {
+        repositories {
+            mavenCentral()
+            jcenter()
+        }
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE'
+        classpath 'org.springframework:springloaded:1.2.6.RELEASE'
+        // classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2"
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+
+    dependencyManagement {
+        imports {
+            mavenBom 'io.spring.platform:platform-bom:Brussels-SR1'
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6'
+        }
+    }
+
+    repositories {
+        if (useExternalMaven) {
+            mavenCentral()
+            jcenter()
+        } else {
+            mavenCentral()
+            jcenter()
+        }
+    }
+
+
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+
+    jar {
+        manifest {
+            attributes(
+                    "Implementation-Title": project.name,
+                    "Implementation-Version": project.version
+            )
+        }
+    }
+
+    bootRun {
+        systemProperties System.properties
+        jvmArgs "-Xmx8192m" //, "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+    }
+
+    bootRepackage {
+        // find automatically
+        // mainClass = 'demo.Application'
+        executable = true
+        excludeDevtools = true
+    }
+
+    springBoot {
+        buildInfo()
+    }
+
+    idea {
+        module {
+            inheritOutputDirs = false
+            outputDir = file("$buildDir/classes/main/")
+        }
+    }
+
+    wrapper {
+        description 'creates gradle wrapper in order to execute ./gradlew <task>'
+        gradleVersion = '3.3'
+    }
+
+    dependencies {
+        // SPRING-IO
+        compile 'org.springframework.boot:spring-boot-starter'
+        compile 'org.springframework.boot:spring-boot-devtools'
+
+        // compile 'org.springframework.cloud:spring-cloud-starter-zookeeper-discovery'
+        // compile 'org.springframework.cloud:spring-cloud-starter-zookeeper-config'
+        // compile 'org.springframework.cloud:spring-cloud-starter-feign'
+
+        // suggested
+        compile 'org.apache.commons:commons-lang3'
+        compile 'commons-beanutils:commons-beanutils'
+        compile 'joda-time:joda-time'
+        compile 'com.google.guava:guava:21.0'
+
+        // compile 'commons-httpclient:commons-httpclient'
+         compile 'com.github.kevinsawicki:http-request:6.0'
+        // compile 'net.sourceforge.htmlunit:htmlunit:2.23'
+        // compile 'org.seleniumhq.selenium:selenium-java:3.0.1'
+        compile 'net.coobird:thumbnailator:0.4.8'
+        compile 'com.gravity:goose:2.1.22'
+        compile 'org.nlpcn:nlp-lang:1.7.3'
+        // database
+        // compile 'com.h2database:h2'
+        // compile 'org.flywaydb:flyway-core'
+//  compile group: 'org.jdbi', name: 'jdbi', version: '2.78'
+        compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
+        compile 'org.springframework.boot:spring-boot-starter-data-redis'
+//        compile 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+        compile 'org.springframework.boot:spring-boot-starter-amqp'
+        compile 'com.querydsl:querydsl-mongodb:4.1.3'
+        compile 'com.querydsl:querydsl-apt:4.1.3'
+        compile 'com.querydsl:querydsl-jpa:4.1.3'
+        compile 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
+        // spring-web
+        compile 'org.springframework.boot:spring-boot-starter-web'
+        compile 'org.springframework.boot:spring-boot-starter-actuator'
+        compile 'io.springfox:springfox-swagger2:2.6.1'
+        compile 'io.springfox:springfox-swagger-ui:2.6.1'
+
+        // testing
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
+        testCompile 'org.assertj:assertj-core:3.3.0'
+    }
+
+}
+

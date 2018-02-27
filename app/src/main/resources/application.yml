@@ -1,0 +1,82 @@
+spring:
+#  profiles:
+#    active: development
+
+  application:
+    name: gulewang-app
+    version: 1.3
+  output:
+    ansi:
+      enabled: ALWAYS
+  session:
+    store-type: none
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+  data:
+    mongodb:
+      host: 121.40.172.176
+      port: 27017
+      database: gule
+
+  redis:
+    host: 121.40.172.176
+    port: 6379
+
+  rabbitmq:
+    host: 121.40.172.176
+#    host: 10.18.19.146
+    username: stock
+    password: stock
+
+logging:
+  pattern:
+    console: "[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%clr(%-5level)] [%thread] [%logger{32}] [%F:%L] [%.8X{requestId}] [] ---- %message%n"
+  file: ./log/${spring.application.name}.log
+  level:
+    root: INFO
+    org.hibernate: ERROR
+    jdbc.resultset: ERROR
+    jdbc.audit: ERROR
+    jdbc.sqlonly: ERROR
+    springfox.documentation.spring: ERROR
+    org.springframework.boot.actuate: ERROR
+    org.springframework.web.servlet: INFO
+    org.springframework.jmx: ERROR
+
+flyway:
+  enabled: false
+
+server:
+  compression:
+    enabled: true
+  port: 8089 # to prevent conflict
+
+security:
+  ignored: "/**"
+
+feign:
+  hystrix:
+    enabled: false
+
+ribbon:
+  ReadTimeout: 30000
+
+
+
+## profile specific properties
+#---
+#spring:
+#  profiles: development
+#
+#
+#---
+#spring:
+#  profiles: test
+
+
