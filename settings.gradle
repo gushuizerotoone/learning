@@ -12,4 +12,5 @@ project(':common').name = 'learning-common'
 include 'spring-drools'
 include 'lombok'
 include 'spring-reactor'
+include 'reactor-core'
 

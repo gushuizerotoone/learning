@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class NotificationServiceImpl implements NotificationService {
 
   @Override
-  public void immediatelyNotificate(Notification notification) throws InterruptedException {
+  public void immediatelyNotify(Notification notification) throws InterruptedException {
     System.out.println("Notification service started for Notification ID: " + notification.getId());
     Thread.sleep(5000);
     System.out.println("Notification service ended for Notification ID: " + notification.getId());

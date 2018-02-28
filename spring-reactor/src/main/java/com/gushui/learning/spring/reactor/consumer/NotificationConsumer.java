@@ -20,7 +20,7 @@ public class NotificationConsumer implements Consumer<Event<Notification>> {
   @Override
   public void accept(Event<Notification> notificationEvent) {
     try {
-      notificationService.immediatelyNotificate(notificationEvent.getData());
+      notificationService.immediatelyNotify(notificationEvent.getData());
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
