@@ -13,4 +13,8 @@ include 'spring-drools'
 include 'lombok'
 include 'spring-reactor'
 include 'reactor-core'
+include 'rxJava'
+include 'spring-security-sso'
+include 'spring-security-sso-auth-server'
+include 'spring-security-sso-ui'
 
