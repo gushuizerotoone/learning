@@ -17,4 +17,5 @@ include 'rxJava'
 include 'spring-security-sso'
 include 'spring-security-sso-auth-server'
 include 'spring-security-sso-ui'
+include 'spring-session'
 
