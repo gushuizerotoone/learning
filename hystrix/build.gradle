@@ -1,0 +1,12 @@
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-tomcat'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-aop'
+    compile 'com.netflix.hystrix:hystrix-core'
+    compile 'com.netflix.hystrix:hystrix-metrics-event-stream'
+    compile 'com.netflix.rxjava:rxjava-core'
+    compile 'org.hamcrest:hamcrest-all'
+    compile 'org.springframework:spring-test'
+    
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
